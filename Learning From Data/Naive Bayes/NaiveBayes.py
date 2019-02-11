@@ -27,7 +27,7 @@ def read_corpus(corpus_file, use_sentiment):
 def identity(x):
     return x
 
-# COMMENT THIS
+# Cread in input file and split the data
 X, Y = read_corpus('trainset.txt', use_sentiment=True)
 split_point = int(0.75*len(X))
 Xtrain = X[:split_point]
@@ -35,7 +35,7 @@ Ytrain = Y[:split_point]
 Xtest = X[split_point:]
 Ytest = Y[split_point:]
 
-# let's use the TF-IDF vectorizer
+# use the TF-IDF vectorizer
 tfidf = True
 
 # we use a dummy function as tokenizer and preprocessor,
@@ -52,12 +52,12 @@ classifier = Pipeline( [('vec', vec),
                         ('cls', MultinomialNB())] )
 
 
-# COMMENT THIS
+# train the data
 classifier.fit(Xtrain, Ytrain)
 
-# COMMENT THIS  
+# make prediction, based on the test-set 
 Yguess = classifier.predict(Xtest)
 
-# COMMENT THIS
+# return prediction accuracies
 print(accuracy_score(Ytest, Yguess))
 
